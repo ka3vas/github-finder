@@ -19,7 +19,7 @@ class Search extends Component {
     e.preventDefault();
     if (this.state.text !== '') {
       this.props.searchUsers(this.state.text);
-      this.setState({ test: '' });
+      this.setState({ text: '' });
     } else {
       this.props.setAlert('Please enter something!', 'light');
     }
