@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react';
-import PropTypes from 'prop-types';
 import GithubContext from '../../context/github/githubContext';
+import AlertContext from '../../context/alert/alertContext';
 
-// Destructure props that are passed
-const Search = ({ setAlert }) => {
+const Search = () => {
   const githubContext = useContext(GithubContext);
+  const { searchUsers, clearUsers, users } = githubContext;
 
-  const { searchUsers, clearUsers } = githubContext;
+  const alertContext = useContext(AlertContext);
+  const { setAlert } = alertContext;
 
   const [text, setText] = useState('');
 
@@ -38,17 +39,13 @@ const Search = ({ setAlert }) => {
           className='btn btn-dark btn-block'
         />
       </form>
-      {githubContext.users.length > 0 && (
+      {users.length > 0 && (
         <button className='btn btn-light btn-block' onClick={clearUsers}>
           Clear
         </button>
       )}
     </div>
   );
-};
-
-Search.propTypes = {
-  setAlert: PropTypes.func.isRequired
 };
 
 export default Search;
