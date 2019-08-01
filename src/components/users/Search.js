@@ -6,7 +6,7 @@ import GithubContext from '../../context/github/githubContext';
 const Search = ({ setAlert }) => {
   const githubContext = useContext(GithubContext);
 
-  const { searchUsers, clearUsers, users } = githubContext;
+  const { searchUsers, clearUsers } = githubContext;
 
   const [text, setText] = useState('');
 
