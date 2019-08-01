@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import GithubContext from '../../context/github/githubContext';
 
 // Destructure props that are passed
-const Search = ({ searchUsers, showClear, clearUsers, setAlert }) => {
+const Search = ({ showClear, clearUsers, setAlert }) => {
+  const githubContext = useContext(GithubContext);
+
   const [text, setText] = useState('');
 
   const onChange = e => setText(e.target.value);
@@ -10,7 +13,7 @@ const Search = ({ searchUsers, showClear, clearUsers, setAlert }) => {
   const onSubmit = e => {
     e.preventDefault();
     if (text !== '') {
-      searchUsers(text);
+      githubContext.searchUsers(text);
       setText('');
     } else {
       setAlert('Please enter something!', 'light');
@@ -43,7 +46,6 @@ const Search = ({ searchUsers, showClear, clearUsers, setAlert }) => {
 };
 
 Search.propTypes = {
-  searchUsers: PropTypes.func.isRequired,
   clearUsers: PropTypes.func.isRequired,
   showClear: PropTypes.bool.isRequired,
   setAlert: PropTypes.func.isRequired
